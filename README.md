@@ -1,6 +1,8 @@
 C2isDoctrineCacheInvalidationBundle
 ====================================
 
+Sensio insight medal : [![SensioLabsInsight](https://insight.sensiolabs.com/projects/366ea708-70d8-42ac-8e37-becd2fbb6c4f/small.png)](https://insight.sensiolabs.com/projects/366ea708-70d8-42ac-8e37-becd2fbb6c4f)
+
 About
 -----
 

@@ -188,20 +188,20 @@ Thanks to it, there's no need to declare translation's entities in the cache inv
   
 Simply configure it in your `config.yml` :
 ```yml
-c2is_doctrine_cache_invalidator:
+c2is_doctrine_cache_invalidation:
     driver: gedmo
 ```
 
 Configuration
 =============
 
-Cache invalidators declaration
+Cache invalidation declaration
 ------------------------------
 
-Two possible cache invalidators type are supported : `yml` or `annotation` (default annotation) :
+Two possible cache invalidation type are supported : `yml` or `annotation` (default annotation) :
 
 ```yml
-c2is_doctrine_cache_invalidator:
+c2is_doctrine_cache_invalidation:
     type: json
     yml_file: [path_to.yml]
 ```
@@ -240,7 +240,7 @@ For now, only `array` and `predis` are supported (default `array`)
 Here is an example with `predis`
 
 ```yml
-c2is_doctrine_cache_invalidator:
+c2is_doctrine_cache_invalidation:
     doctrine_cache_driver_id: predis
     cache_driver_options:
         host: [redis_host]
@@ -254,7 +254,7 @@ Default configuration is no translation driver activated.
 You can activate gedmo as shown above, or provide yours. It must extends `\C2is\DoctrineCacheInvalidationBundle\CacheInvalidatorDriver\AbstractCacheInvalidatorDriver`*
 
 ```yml
-c2is_doctrine_cache_invalidator:
+c2is_doctrine_cache_invalidation:
     driver: custom
     custom_driver_id: [custom_translation_driver_service_id]
 ```
