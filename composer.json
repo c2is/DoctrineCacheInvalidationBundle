@@ -15,7 +15,7 @@
         "symfony/symfony":                   "~3.0"
     },
     "autoload": {
-        "psr-0": { "Bigfoot\\Bundle\\CoreBundle": "" }
+        "psr-4": { "C2is\\DoctrineCacheInvalidationBundle": "" }
     },
     "suggest": {
         "predis/predis": "Provides Redis support",
