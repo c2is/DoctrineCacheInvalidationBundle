@@ -1,7 +1,7 @@
 {
     "name": "c2is/doctrine-cache-invalidation-bundle",
     "type": "symfony-bundle",
-    "description": "C2IS Doctrine Cache Invalidation Bundle",
+    "description": "C2is Doctrine Cache Invalidation Bundle",
     "keywords": [],
     "license": "MIT",
     "authors": [
