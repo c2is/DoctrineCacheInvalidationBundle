@@ -1,6 +1,7 @@
 services:
     c2is_doctrine_cache_invalidator.cache_invalidator:
         class: C2is\DoctrineCacheInvalidationBundle\EventListener\CacheInvalidator
+        private: true
         arguments:
             - '@c2is_doctrine_cache_invalidator.configuration_loader'
             - '@c2is_doctrine_cache_invalidator.cache_invalidator_driver'
@@ -11,11 +12,13 @@ services:
 
     c2is_doctrine_cache_invalidator.configuration_loader.annotation:
         class: C2is\DoctrineCacheInvalidationBundle\Loader\AnnotationCacheConfigurationLoader
+        private: true
         arguments:
             - '@annotations.reader'
 
     c2is_doctrine_cache_invalidator.configuration_loader.yml:
         class: C2is\DoctrineCacheInvalidationBundle\Loader\YmlCacheConfigurationLoader
+        private: true
         arguments:
             - '%kernel.root_dir%'
             - '%c2is_doctrine_cache_invalidator.yml_file%'
@@ -31,13 +34,17 @@ services:
     c2is_doctrine_cache_invalidator.cache_invalidator_driver.default:
         class: C2is\DoctrineCacheInvalidationBundle\CacheInvalidatorDriver\CacheInvalidatorDefaultDriver
         parent: c2is_doctrine_cache_invalidator.cache_invalidator_driver.abstract
+        private: true
 
     c2is_doctrine_cache_invalidator.cache_invalidator_driver.gedmo:
         class: C2is\DoctrineCacheInvalidationBundle\CacheInvalidatorDriver\CacheInvalidatorGedmoDriver
         parent: c2is_doctrine_cache_invalidator.cache_invalidator_driver.abstract
+        private: true
 
     c2is_doctrine_cache_invalidator.cache_provider_driver.array:
         class: C2is\DoctrineCacheInvalidationBundle\CacheProviderDriver\ArrayProvider
+        private: true
 
     c2is_doctrine_cache_invalidator.cache_provider_driver.predis:
         class: C2is\DoctrineCacheInvalidationBundle\CacheProviderDriver\PredisProvider
+        private: true
