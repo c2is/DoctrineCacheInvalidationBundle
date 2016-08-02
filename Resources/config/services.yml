@@ -1,0 +1,43 @@
+services:
+    C2IS.doctrine_cache_result.cache_invalidator:
+        class: C2is\DoctrineCacheInvalidationBundle\EventListener\CacheInvalidator
+        arguments:
+            - '@C2IS.doctrine_cache_result.configuration_loader'
+            - '@C2IS.doctrine_cache_result.cache_invalidator_driver'
+            - '@C2IS.doctrine_cache_result.cache_provider_driver'
+            - '%C2IS_doctrine_cache_result.doctrine_cache_driver_options%'
+        tags:
+            - { name: doctrine.event_listener, event: onFlush }
+
+    C2IS.doctrine_cache_result.configuration_loader.annotation:
+        class: C2is\DoctrineCacheInvalidationBundle\Loader\AnnotationCacheConfigurationLoader
+        arguments:
+            - '@annotations.reader'
+
+    C2IS.doctrine_cache_result.configuration_loader.yml:
+        class: C2is\DoctrineCacheInvalidationBundle\Loader\YmlCacheConfigurationLoader
+        arguments:
+            - '%kernel.root_dir%'
+            - '%C2IS_doctrine_cache_result.yml_file%'
+
+    C2IS.doctrine_cache_result.cache_invalidator_driver.abstract:
+        class: C2is\DoctrineCacheInvalidationBundle\CacheInvalidatorDriver\AbstractCacheInvalidatorDriver
+        abstract: true
+        calls:
+            - ['setDebug', ['%kernel.debug%']]
+            - ['setEventDispatcher', ['@event_dispatcher']]
+            - ['setPropertyAccessor', ['@property_accessor']]
+
+    C2IS.doctrine_cache_result.cache_invalidator_driver.default:
+        class: C2is\DoctrineCacheInvalidationBundle\CacheInvalidatorDriver\CacheInvalidatorDefaultDriver
+        parent: C2IS.doctrine_cache_result.cache_invalidator_driver.abstract
+
+    C2IS.doctrine_cache_result.cache_invalidator_driver.gedmo:
+        class: C2is\DoctrineCacheInvalidationBundle\CacheInvalidatorDriver\CacheInvalidatorGedmoDriver
+        parent: C2IS.doctrine_cache_result.cache_invalidator_driver.abstract
+
+    C2IS.doctrine_cache_result.cache_provider_driver.array:
+        class: C2is\DoctrineCacheInvalidationBundle\CacheProviderDriver\ArrayProvider
+
+    C2IS.doctrine_cache_result.cache_provider_driver.predis:
+        class: C2is\DoctrineCacheInvalidationBundle\CacheProviderDriver\PredisProvider
