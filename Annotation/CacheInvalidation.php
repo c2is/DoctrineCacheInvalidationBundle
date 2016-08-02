@@ -2,13 +2,15 @@
 
 namespace C2is\DoctrineCacheInvalidationBundle\Annotation;
 
+use C2is\DoctrineCacheInvalidationBundle\Exception\InvalidArgumentException;
+
 /**
  * @Annotation
  * @Target("METHOD")
  *
  * @author Nicolas Philippe <nikophil@gmail.com>
  */
-class CacheResult
+class CacheInvalidation
 {
     /** @var string */
     private $cacheId;
@@ -28,14 +30,14 @@ class CacheResult
         if (isset($options['cacheId'])) {
             $this->cacheId = $options['cacheId'];
         } else {
-            throw new \InvalidArgumentException('CacheResultAnnotation : cacheId is mandatory');
+            throw new InvalidArgumentException('CacheInvalidationAnnotation : cacheId is mandatory');
         }
 
         if (isset($options['entities'])) {
             if (is_array($options['entities'])) {
                 $this->entities = $options['entities'];
             } else {
-                throw new \InvalidArgumentException('CacheResultAnnotation : entities parameter must be an array');
+                throw new InvalidArgumentException('CacheInvalidationAnnotation : entities parameter must be an array');
             }
         } else {
             $this->entities = [];

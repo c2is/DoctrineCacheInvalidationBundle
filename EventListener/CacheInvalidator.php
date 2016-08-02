@@ -59,7 +59,7 @@ class CacheInvalidator
         foreach ($scheduledEntityChanges as $entities) {
             foreach ($entities as $entity) {
                 $cacheIds = array_merge($cacheIds, $this->cacheInvalidatorDriver->getCacheIdsForEntity(
-                    $entityManager,
+                    $eventArgs,
                     $this->cacheConfiguration,
                     $entity
                 ));

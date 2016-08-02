@@ -44,27 +44,27 @@ class C2isDoctrineCacheInvalidationExtension extends Extension
             }
         }
 
-        $container->setParameter('c2is_doctrine_cache_result.type', $config['type']);
-        $container->setAlias('c2is.doctrine_cache_result.configuration_loader', sprintf('c2is.doctrine_cache_result.configuration_loader.%s', $config['type']));
+        $container->setParameter('c2is_doctrine_cache_invalidator.type', $config['type']);
+        $container->setAlias('c2is_doctrine_cache_invalidator.configuration_loader', sprintf('c2is_doctrine_cache_invalidator.configuration_loader.%s', $config['type']));
 
-        $container->setParameter('c2is_doctrine_cache_result.driver', $config['driver']);
+        $container->setParameter('c2is_doctrine_cache_invalidator.driver', $config['driver']);
         if ($config['driver'] != 'custom') {
-            $container->setAlias('c2is.doctrine_cache_result.cache_invalidator_driver', sprintf('c2is.doctrine_cache_result.cache_invalidator_driver.%s', $config['driver']));
+            $container->setAlias('c2is_doctrine_cache_invalidator.cache_invalidator_driver', sprintf('c2is_doctrine_cache_invalidator.cache_invalidator_driver.%s', $config['driver']));
         } elseif (null !== $config['custom_driver_id']) {
-            $container->setAlias('c2is.doctrine_cache_result.cache_invalidator_driver', $config['custom_driver_id']);
+            $container->setAlias('c2is_doctrine_cache_invalidator.cache_invalidator_driver', $config['custom_driver_id']);
         } else {
             throw new \InvalidArgumentException("You must provide the custom driver id.");
         }
 
-        $container->setParameter('c2is_doctrine_cache_result.doctrine_cache_driver_id', $config['doctrine_cache_driver_id']);
-        $container->setAlias('c2is.doctrine_cache_result.cache_provider_driver', sprintf('c2is.doctrine_cache_result.cache_provider_driver.%s', $config['doctrine_cache_driver_id']));
+        $container->setParameter('c2is_doctrine_cache_invalidator.doctrine_cache_driver_id', $config['doctrine_cache_driver_id']);
+        $container->setAlias('c2is_doctrine_cache_invalidator.cache_provider_driver', sprintf('c2is_doctrine_cache_invalidator.cache_provider_driver.%s', $config['doctrine_cache_driver_id']));
 
         if (isset($config['cache_driver_options']) && null !== $config['cache_driver_options']) {
-            $container->setParameter('c2is_doctrine_cache_result.doctrine_cache_driver_options', $config['cache_driver_options']);
+            $container->setParameter('c2is_doctrine_cache_invalidator.doctrine_cache_driver_options', $config['cache_driver_options']);
         } else {
-            $container->setParameter('c2is_doctrine_cache_result.doctrine_cache_driver_options', []);
+            $container->setParameter('c2is_doctrine_cache_invalidator.doctrine_cache_driver_options', []);
         }
 
-        $container->setParameter('c2is_doctrine_cache_result.yml_file', $config['yml_file']);
+        $container->setParameter('c2is_doctrine_cache_invalidator.yml_file', $config['yml_file']);
     }
 }

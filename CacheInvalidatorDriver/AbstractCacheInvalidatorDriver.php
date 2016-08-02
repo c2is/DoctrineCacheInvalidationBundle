@@ -2,6 +2,7 @@
 
 namespace C2is\DoctrineCacheInvalidationBundle\CacheInvalidatorDriver;
 
+use C2is\DoctrineCacheInvalidationBundle\Exception\InvalidArgumentException;
 use Doctrine\ORM\Event\OnFlushEventArgs;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\EventDispatcher\GenericEvent;
@@ -79,7 +80,7 @@ abstract class AbstractCacheInvalidatorDriver
             ]);
             $this->eventDispatcher->dispatch('cache_invalidator.property_not_readable', $event);
             if (true === $this->debug) {
-                throw new \InvalidArgumentException(sprintf('Error : property "%s" is not readable on class %s', $value, get_class($entity)));
+                throw new InvalidArgumentException(sprintf('Error : property "%s" is not readable on class %s', $value, get_class($entity)));
             }
 
             return null;

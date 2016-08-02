@@ -1,4 +1,11 @@
 C2isDoctrineInvalidationResultBundle
 ====================================
 
-A Symfony project created on December 18, 2015, 3:50 pm.
+About
+-----
+
+This bundle provides an easy way to invalidate doctrine cache result.
+
+## Documentation ##
+
+[Read the documentation in Resources/doc/](https://github.com/c2is/DoctrineCacheInvalidationBundle/blob/master/Resources/doc/index.md)

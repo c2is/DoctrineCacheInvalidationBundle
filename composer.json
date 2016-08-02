@@ -11,17 +11,19 @@
         }
     ],
     "require": {
-        "php":                               ">=5.5.9",
-        "symfony/symfony":                   "~3.0"
+        "php": ">=5.5.9",
+        "symfony/symfony": "~3.0",
+        "doctrine/orm": "^2.5",
+        "doctrine/doctrine-bundle": "^1.6",
+        "doctrine/doctrine-cache-bundle": "^1.2"
     },
     "autoload": {
-        "psr-4": { "C2is\\DoctrineCacheInvalidationBundle": "" }
+        "psr-4": { "C2is\\DoctrineCacheInvalidationBundle\\": "" }
     },
     "suggest": {
         "predis/predis": "Provides Redis support",
         "gedmo/doctrine-extensions": "Provides support for Gedmo translations"
     },
-    "target-dir": "Bigfoot/Bundle/CoreBundle",
     "minimum-stability": "dev",
     "extra": {
         "branch-alias": {
