@@ -20,7 +20,7 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('c2is_doctrine_cache_invalidator');
+        $rootNode = $treeBuilder->root('c2is_doctrine_cache_invalidation');
 
         $rootNode->children()
             ->enumNode('type')
