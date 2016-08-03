@@ -23,6 +23,9 @@ class Configuration implements ConfigurationInterface
         $rootNode = $treeBuilder->root('c2is_doctrine_cache_invalidation');
 
         $rootNode->children()
+            ->booleanNode('enabled')
+                ->defaultFalse()
+            ->end()
             ->enumNode('type')
                 ->defaultValue('annotation')
                 ->values(['annotation', 'yml'])
