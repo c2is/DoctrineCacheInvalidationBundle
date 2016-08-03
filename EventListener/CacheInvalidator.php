@@ -31,7 +31,7 @@ class CacheInvalidator
     public function __construct(
         CacheConfigurationLoaderInterface $cacheIdsLoader,
         AbstractCacheInvalidatorDriver $cacheInvalidatorDriver,
-        CacheProviderDriverInterface $cacheProviderDriver,
+        CacheProviderDriverInterface $cacheProviderDriver = null,
         array $cacheDriverOptions
     ) {
         $this->cacheIdsLoader         = $cacheIdsLoader;
@@ -72,7 +72,10 @@ class CacheInvalidator
 
         $cacheIds = array_unique($cacheIds);
 
-        $entityManager->getConfiguration()->setResultCacheImpl($this->cacheProviderDriver->getCacheProvider($this->cacheDriverOptions));
+        if (null !== $this->cacheProviderDriver) {
+            $entityManager->getConfiguration()->setResultCacheImpl($this->cacheProviderDriver->getCacheProvider($this->cacheDriverOptions));
+        }
+
         $resultCache = $entityManager->getConfiguration()->getResultCacheImpl();
 
         foreach ($cacheIds as $cacheId) {
