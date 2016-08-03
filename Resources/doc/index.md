@@ -59,7 +59,7 @@ Caching queries
 ---------------
 
 The bundle invalidates doctrine's cache result unless you have activated it
-and gave to your repositories' queries cacheIds.
+and gave cacheIds to your repositories' queries.
  
 Configure the doctrine cache in your `config_prod.yml` :
 ```yml
@@ -96,7 +96,8 @@ class MyEntityRepository extends EntityRepository
 }
 ```
 
-That's it ! When Myentity entities will be inserted / updated / deleted,  `MyEntityRepository::findAll` cache result will be invalidated.
+That's it ! When MyEntity entities will be inserted / updated / deleted,  `MyEntityRepository::findAll` cache result will be invalidated.
+Notice the `md5` hash, that is mandatory for now.  
  
 Queries with joins
 ------------------
@@ -216,21 +217,21 @@ AppBundle\Entity\MyEntity:
         vars:
             - id
     -
-        id: MyEntity:findAll:%s
+        id: MyEntity:findAll
 AppBundle\Entity\OtherEntity:
     -
         id: MyEntity:findOneById:%s
         vars:
             - myEntity.id
     -
-        id: MyEntity:findAll:%s
+        id: MyEntity:findAll
 AppBundle\Entity\ThirdEntity:
     -
         id: MyEntity:findOneById:%s
         vars:
             - myEntity.id
     -
-        id: MyEntity:findAll:%s
+        id: MyEntity:findAll
 ```
 
 Doctrine cache drivers
@@ -247,11 +248,12 @@ c2is_doctrine_cache_invalidation:
         database: [redis_database_id]
 ```
 
-Translation drivers
--------------------
+Drivers
+-------
 
-Default configuration is no translation driver activated.
-You can activate gedmo as shown above, or provide yours. It must extends `\C2is\DoctrineCacheInvalidationBundle\CacheInvalidatorDriver\AbstractCacheInvalidatorDriver`*
+Default driver deals with simple databases not translated.
+You can activate gedmo as shown above, or provide your own driver. 
+It must extends `\C2is\DoctrineCacheInvalidationBundle\CacheInvalidatorDriver\AbstractCacheInvalidatorDriver`
 
 ```yml
 c2is_doctrine_cache_invalidation:
@@ -267,5 +269,5 @@ As the bundle is young, there's a lot to do :
  - unit testing
  - set by default the doctrine's cache driver used in current environment
  - possibility to provide custom cache driver
- - change CacheInvalidatorDriver's name
  - provide parameters to invalidate cache only on insert / update or delete
+ - provide option to deactivate hashing keys
